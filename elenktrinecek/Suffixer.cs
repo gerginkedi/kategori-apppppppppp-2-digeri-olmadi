@@ -21,7 +21,7 @@ namespace elenktrinecek
 
                 Console.Write("eklenecek kategorinin adini giriniz: ");
                 categoryNameToAdd = Console.ReadLine();
-                listToReturn.Add(categoryNameToAdd);
+                listToReturn.Add(categoryNameToAdd.ToLower());
                 Console.WriteLine("cikmak icin 0, devam etmek icin 1 yaziniz: ");
                 input = Console.ReadLine();
 
@@ -29,9 +29,7 @@ namespace elenktrinecek
                 {
                     isActive = false;
                 }
-
             }
-
             return listToReturn;
         }
     }
