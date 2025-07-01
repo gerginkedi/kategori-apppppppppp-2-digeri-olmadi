@@ -6,15 +6,14 @@ namespace elenktrinecek
     {
         static void Main(string[] args)
         {
-            bool isActive = true;
             bool isActive1 = true;
+            bool isActive2 = true;
             string categoryForLooking = string.Empty;
             string itemOrExit = string.Empty;
-
+            string categoryNameWhichWillBeCompleted = string.Empty;
+            string itemNameWillBeAdded = string.Empty;
             Suffixer suffixer = new Suffixer();
-
             Dictionary<string, List<string>> menu = new Dictionary<string, List<string>>();
-
             List<string> categoryNamesComeFromSuffixer = new List<string>();
 
             foreach (string item in suffixer.categoryItemSuffixer())
@@ -27,9 +26,8 @@ namespace elenktrinecek
                 menu.Add(item, new List<string>());
             }
 
-            while (isActive)
+            while (isActive1)
             {
-
                 Console.WriteLine(" Hangi kategoriye item ekleme islemi yapilsin");
                 Console.WriteLine("(cikmak icin 0)");
                 Console.WriteLine("===================================");
@@ -38,44 +36,56 @@ namespace elenktrinecek
                     Console.WriteLine(kategoriler.ToUpper());
                 }
 
-
-
-                //foreach (string item in categoryNamesComeFromSuffixer)
-                //{
-                //    categoryForLooking = Console.ReadLine();
-
-                //    if (item == categoryForLooking)
-                //    {
-                //        while (isActive1)
-                //        {
-                //            Console.Write("eklenecek item adi giriniz: ");
-                //            Console.Write("cikmak iicn 0");
-                //            Console.WriteLine("///////////////");
-
-                //            itemOrExit = Console.ReadLine();
-
-                //            if (itemOrExit == "0")
-                //            {
-                //                isActive1 = false;
-                //            }
-
-                //            menu[categoryForLooking].Add(itemOrExit);
-                //        }
-                //    }
-
-                //    else
-                //    {
-                //        Console.WriteLine("boyle bir kategori yok");
-                //    }
-                //}
-
-                Console.WriteLine("//////////////////////////////////////////////////////////////////");
-                Console.WriteLine(categoryForLooking.ToUpper());
-                foreach (string sil in menu[categoryForLooking])
+                Console.Write("Kategori ismi: ");
+                Console.Write("(cikmak icin 0)");
+                categoryNameWhichWillBeCompleted = Console.ReadLine();
+                if (categoryNameWhichWillBeCompleted == "0")
                 {
-                    Console.WriteLine(sil.ToLower());
+                    break;
                 }
 
+                else
+                {
+                    foreach (string categoryThatWillBeCompleted in categoryNamesComeFromSuffixer)
+                    {
+                        if (categoryThatWillBeCompleted == categoryNameWhichWillBeCompleted)
+                        {
+                            break;
+                        }
+                    }//kategoriyi bulduk
+
+                    while (isActive2)
+                    {
+                        Console.Write("eklenecek item adi giriniz: ");
+                        Console.Write("(cikmak icin 0)");
+                        itemNameWillBeAdded = Console.ReadLine();
+
+                        if (itemNameWillBeAdded == "0")
+                        {
+                            break;
+                        }
+                            menu[categoryNameWhichWillBeCompleted].Add(itemNameWillBeAdded);
+                    }
+                }
+            }
+
+
+
+
+            Console.WriteLine("/////////////////////////////////////////////////////////////");
+            Console.WriteLine("                             MENU");
+
+            foreach (string keyValues in menu.Keys)
+            {
+                Console.WriteLine(keyValues.ToUpper());
+
+                foreach (List<string> values in menu.Values)
+                {
+                    foreach (string item3 in values)
+                    {
+                        Console.WriteLine(item3);
+                    }
+                }
             }
         }
     }
